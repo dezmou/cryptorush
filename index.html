@@ -310,12 +310,7 @@
 			setInterval(getHot, TIME_RELOAD_HOT);
 
 			function toggleHot(){
-				if (isHot){
-					isHot = false;
-				}
-				else{
-					isHot = true;
-				}
+				isHot = !isHot;
 				change();
 			}
 
@@ -453,12 +448,7 @@
 								return false;			
 							}
 						}
-						if (ook){
-							return true;
-						}
-						else{
-							return false;
-						}
+						return (ook);
 					}
 					else{
 						if (contentLower.indexOf(filter_keys.toLowerCase()) === -1){
