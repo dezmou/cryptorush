@@ -1,4 +1,4 @@
-# Cryptorush.io
+# http://Cryptorush.io
 
 ## Real Time Tweets about altcoins
 
