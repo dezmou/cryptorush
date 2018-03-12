@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="description" content="Get live reports about altcoins from twitter"/>
+		<meta name="robots" content="cryptorush, twitter, crypto, altcoins, realtime, report, currency"/>
+		<meta name="googlebot" content="cryptorush, twitter, crypto, altcoins, realtime, report, currency"/>
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
+		<link rel="icon" type="image/png" sizes="196x196" href="/favicon-192.png">
+		<link rel="icon" type="image/png" sizes="160x160" href="/favicon-160.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+		<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+		<link rel="apple-touch-icon" href="/favicon-57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/favicon-114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/favicon-72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/favicon-144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/favicon-60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/favicon-120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/favicon-76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/favicon-152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+		<link href="http://www.cryptorush.io//cryplogo.png" rel="image_src" />
+		<meta property="og:title" content="Get fresh Data about altcoins" />
+		<meta property="og:description" content="Get fresh Data about altcoins" />
+		<meta property="og:image" content="http://www.cryptorush.io/cryplogo.png" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<title>CryptoRush</title>
+		<meta charset="UTF-8">
+		<!-- ok ok maybe normalize css is grotesque -->
+		<style>
+
+			body{
+				font-family			: 	verdana;
+				padding				: 	0px;
+				margin 				: 	0px;
+				color 				: 	white;
+				background-color	: 	#5c5363;
+			}
+			#imglogo{
+				margin-right 		: 	10px;
+				margin-left 		: 	10px;
+			}
+			body a{
+				color				: 	white;
+			}
+			#inte{
+				width				: 	90%;
+				padding				: 	15px;
+				background-color	: 	#2a293a;
+				border				: 	1px outset #2a293a;
+			}
+			#hotNow{
+				width				: 	90%;
+				padding				: 	15px;
+				background-color	: 	#2a293a;
+				border				: 	1px outset #2a293a;
+				margin-top 			:	20px;
+			}
+			#popKeys a{
+				text-decoration: none;
+			}
+			#popKeys a:hover{
+				text-decoration: underline;
+			}
+			#mainContent{
+
+			}
+			#allContent{
+				width				: 	60%;
+
+			}
+			.post{
+				background-color	: 	#2a293a;
+				margin 				: 	5px;
+				margin-top 			: 	10px;
+				padding 			: 	20px;
+			}
+
+			.post_title{
+				background-color	: 	#414056;
+				height				: 	30px;
+				padding				: 	5px;
+			}
+			.post_content{
+				padding				: 	10px;
+				word-wrap			: 	break-word;
+
+			}
+			.post_urls{
+				background-color	: 	#414056;
+				padding				: 	10px;
+				word-wrap			: 	break-word;
+			}
+			#filters{
+				background-color 	: 	#26272b;
+				padding-top			: 	7px;
+				color				: 	white;
+				position			: 	fixed;
+				width				: 	100%;
+				border-bottom 		: 	5px solid black;
+			}
+			input {
+		     	padding				: 	5px;
+		     	font-size			: 	16px;
+		     	border-width		:	1px;
+		     	border-color		: 	#CCCCCC;
+		     	background-color	:	#FFFFFF;
+		     	color				: 	#000000;
+		     	border-style		: 	solid;
+		     	border-radius		: 	6px;
+		     	box-shadow			: 	0px 0px 5px rgba(66,66,66,.75);
+		     	text-shadow			: 	inset 0px 0px 5px px rgba(66,66,66,.75);
+			}
+		 	input:focus {
+		     	outline				:	none;
+			}
+
+			.right{
+				float				: 	right;
+				width				: 	37%;
+				background-color 	: 	#26272b;
+				padding 			: 	20px;
+				margin-top 			: 	10px;
+			}
+			.red{
+				color				: 	#910000;
+				font-weight: 		: 	bold;
+			}
+			@media (max-width : 1081px) {
+				.right{
+					display 		: 	none;
+				}
+				#allContent{
+					width			: 	98%;
+				}
+			}
+			#content_key{
+				background-color	: 	#414056;
+				width : 96%;
+				padding-top: 8px;
+				padding-bottom : 8px;
+				background-image: url("term.png");
+				background-size: 25px;
+				background-repeat: no-repeat;
+				background-position : 10px;
+			}
+			.hotbar{
+				height : 9px;
+				background-color: orange;
+			}
+			.switch {
+			  position: relative;
+			  display: inline-block;
+			  width: 60px;
+			  height: 20px;
+			}
+
+			/* Hide default HTML checkbox */
+			.switch input {display:none;}
+
+			/* The slider */
+			.slider {
+			  position: absolute;
+			  cursor: pointer;
+			  top: 0;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			  background-color: orange;
+			  -webkit-transition: .4s;
+			  transition: .4s;
+			}
+
+			.slider:before {
+			  position: absolute;
+			  content: "";
+			  height: 14px;
+			  width: 14px;
+			  left: 4px;
+			  bottom: 4px;
+			  background-color: white;
+			  -webkit-transition: .4s;
+			  transition: .4s;
+			}
+
+			input:checked + .slider {
+			  background-color: #414056;
+			}
+
+			input:focus + .slider {
+			  box-shadow: 0 0 1px #2196F3;
+			}
+
+			input:checked + .slider:before {
+			  -webkit-transform: translateX(35px);
+			  -ms-transform: translateX(35px);
+			  transform: translateX(35px);
+			}
+
+			/* Rounded sliders */
+			.slider.round {
+			  border-radius: 34px;
+			}
+
+			.slider.round:before {
+			  border-radius: 50%;
+			}
+		</style>
+	</head>
+    <body>
+            
+			<div id="filters">
+				<div style="float:left; font-size:20px;">
+					<img id="imglogo" src="cryplogo.png" width="30px"/ style="margin-right:25px;">
+					
+					
+					
+					 
+					  
+					
+					
+				
+				</div>
+				<div style="float:right">
+					Keywords <input type="text" onchange="change()" value='' placeholder="example: announce" id="keyWords" style="width:300px;">
+					Min-Followers <input type="text" onchange="change()" value='2000'  style="width:50px;" id="min_fol">
+					ReTweet <input type="checkbox" onchange="change()" id="rt" >
+				</div>
+			</div>
+
+			<div style="height:52px;">
+			</div>
+		<div id="infos" class="right">
+			<br/>
+			<div id="inte">
+				<h3 style="color: #bc861a">CryptoRush.io</h3>
+			Get all live data about altcoins from Twitter.<br/><br/>
+
+			Set keywords to get only desired content.<br/>
+			Multiple keywords are separated by spaces.<br/>
+			Increase min-followers if too much data.<br/>
+			<br/>
+			
+			
+			<br/><br/>
+			Donations and feedbacks appreciated <br/>
+			BTC : 1Cv7yGSUvsUpFs3oRLCr1miQUu6jRdiUWT<br/>
+			incredibledez@gmail.com
+			</div>
+			
+				
+				
+			
+			<br/><br/>
+			<img src="http://cryptorush.io/cryp.png" width="100%"/>
+			<div>
+			<script type="text/javascript">
+				baseUrl 		= "https://widgets.cryptocompare.com/";
+				var scripts 	= document.getElementsByTagName("script");
+				var embedder 	= scripts[ scripts.length - 1 ];
+				var cccTheme 	= {"General":{"background":"#121212","borderColor":"#000"},"Tabs":{"background":"#000","color":"#FFF","borderColor":"#333","activeBackground":"#333","activeColor":"#FFF"},"Row":{"color":"#FFF","borderColor":"#585858"},"Conversion":{"background":"#000","color":"#CCC"}};
+
+				(function (){
+					var appName = encodeURIComponent(window.location.hostname);
+					if(appName==""){appName="local";}
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.async = true;
+					var theUrl = baseUrl+'serve/v1/coin/multi?fsyms=BTC,ETH,XMR,LTC&tsyms=USD,EUR,CNY,GBP';
+					s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
+					embedder.parentNode.appendChild(s);
+				})();
+			</script>
+		</div>
+			<br/>
+			<center>
+			CryptoRush 2017 <br/>
+			Powered by <br/>
+			<img src="https://www.python.org/static/community_logos/python-logo-inkscape.svg" style="margin-top:7px;" width="20%">
+			</center>
+		</div>
+		<div id="allContent">
+			<div id="mainContent">
+			</div>
+		</div>
+		<script>
+			const 	MAX_POST 			= 5000;
+			const 	PAGE_HOT 			= 1;
+			const 	PAGE_FRESH 			= 2;
+			const 	TIME_RELOAD_HOT 	= 60000;
+
+			var 	allContent 			= [];
+			var 	beforePost ;
+			var 	filter_keys 		= document.getElementById("keyWords").value;
+			var 	filter_followers 	= document.getElementById("min_fol").value;
+			var 	filter_rt 			= document.getElementById("rt").checked;
+			var 	hotNow 				= document.getElementById("hotNowContent");
+			var 	finalStr			= "/?keys="+filter_keys+"&fol="+filter_followers+"&rt="+filter_rt;
+			var 	hot 				= [];
+			var 	isHot 				= false;
+			var 	actPop 				= 0;
+			var 	launched 			= false;
+			var 	maxHot 				= 0;
+
+			getHot();
+			setInterval(getHot, TIME_RELOAD_HOT);
+
+			function toggleHot(){
+				if (isHot){
+					isHot = false;
+				}
+				else{
+					isHot = true;
+				}
+				change();
+			}
+
+			function getHot(){
+				/*
+				$.ajax({
+					type:    "GET",
+					url:     "gethotjson.php",
+					success: function(text) {
+						maxHot = 0;
+						hot =  JSON.parse(text);
+						for (var k in hot){
+							if (hot[k].pop > maxHot){
+								maxHot = hot[k].pop;
+							}
+							//console.log(hot[k]["name"] + " " + hot[k]["pop"])
+						}
+						hotNow.innerHTML = "";
+						for (var k in hot){
+							var neo = document.createElement('div');
+							var inf = (hot[k].pop / maxHot * 100) | 0;
+							neo.innerHTML = '<a href="#" onclick="setKey(\''+hot[k].name+'\')">'+'('+inf+'%) '+hot[k].name+'</a>';
+							hotNow.appendChild(neo);
+						}
+						$('#hotNow').fadeOut(100);
+						$('#hotNow').fadeIn(500);
+						//console.log("\n\n\n");
+						if (!launched){
+							launch();
+							launched = true;
+						}
+					},
+					error:   function() {
+						console.log("error loading hot");
+					}
+				});
+			    */
+			    						if (!launched){
+							launch();
+							launched = true;
+						}
+			}
+
+			function setKey(key){
+				document.getElementById("keyWords").value = key;
+				change();
+			}
+
+			function launch(){
+				$.ajax({
+					type:    "GET",
+					url:     "getjson.php",
+					success: function(text) {
+						try{
+							json = JSON.parse(text);
+							for(var k in json){
+								allContent.unshift(json[k]);
+								if (filterOk(json[k])){
+									addPost(json[k]);
+								}
+							}
+							startStream();
+						}
+						catch(err){
+							location.reload();
+						}
+					},
+					error:   function() {
+						console.log("error loading caches posts");
+					}
+				});
+			}
+
+			function startStream(){
+				var ws = new WebSocket("ws://cryptorush.io:5555");
+				ws.onmessage = function (event) {
+					var content = JSON.parse(event.data);
+					allContent.unshift(content);
+					if (allContent.length >= MAX_POST){
+						allContent.splice(-1,1);
+					}
+					if (filterOk(content)){
+						addPost(content, transition=true);
+					}
+				};
+			}
+
+			function highlightWords( line, word ){
+			     var regex = new RegExp( '(' + word + ')', 'gi' );
+			     return line.replace( regex, "<span class='red'>$1</span>" );
+			}
+
+			function filterOk(content, onlykey = false){
+				content.textDisplay = content.text;
+				 var contentLower = content.text.toLowerCase();
+				if (isHot){
+					var ok = false
+					var mpop = 0;
+					for (var k in hot){
+						if (contentLower.indexOf(hot[k].name) !== -1){
+							ok = true;
+							if (hot[k].pop >= mpop){
+								mpop = hot[k].pop;
+								actPop = hot[k].pop;
+							}
+						}
+					}
+					if (ok == false){
+						return false;
+					}
+				}
+				if (!onlykey){
+					if (filter_followers > content.followers){
+						return false;
+					}
+					if (!filter_rt && content.rt){
+						return false;
+					}
+				}
+				if (filter_keys !== ""){
+					filter_keys = filter_keys.trim();
+					if (filter_keys.indexOf(" ") !== -1){
+						sp = filter_keys.split(" ");
+						var ook = false;
+						for (var key in sp){
+							if (contentLower.indexOf(sp[key].toLowerCase().replace("-", "")) !== -1){
+								if (sp[key].toLowerCase().charAt(0) == "-"){
+									console.log("non");
+									content.textDisplay = content.text;
+									return false;
+								}
+								content.textDisplay = highlightWords(content.textDisplay, sp[key]);
+								ook = true;
+							}else{
+								return false;			
+							}
+						}
+						if (ook){
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+					else{
+						if (contentLower.indexOf(filter_keys.toLowerCase()) === -1){
+							return false;
+						}
+						content.textDisplay = highlightWords(content.text, filter_keys);
+					}
+				}
+				return true;
+			}
+
+			function addPost(content, transition=false){
+				var allPosts 		= document.getElementsByClassName("post");
+				var neo				= document.createElement('div');
+				var neo_content 	= document.createElement("div");
+				var neo_title 		= document.createElement('div');
+				var neo_urls 		= document.createElement("div");
+				var isUrl 			= false;
+				var mainContent 	= document.getElementById("mainContent");
+
+				for (k in content.urls){
+					neo_urls.innerHTML += "<a href="+content.urls[k]+">"+content.urls[k]+"</a>" + "<br/>";
+					isUrl = true;
+				}
+				neo.className = "post";
+				neo_urls.className= "post_urls";
+				neo_title.className = "post_title";
+				neo_content.className = "post_content";
+				neo_content.innerHTML = content.textDisplay;
+				neo_title.innerText = content.name + " | Followers :" + content.followers;
+				if (isHot){
+					var neo_hot = document.createElement('div');
+					var pourcent = actPop / maxHot * 100;
+					neo_hot.className = "hotbar";
+					neo_hot.setAttribute("style", "width:"+pourcent+"%");
+					neo.appendChild(neo_hot);
+				}
+				neo.appendChild(neo_title);
+				neo.appendChild(neo_content);
+				if (isUrl){
+					neo.appendChild(neo_urls);
+				}
+				mainContent.insertBefore(neo, mainContent.firstChild);
+				if (transition){
+					$(neo).hide().slideDown('slow');
+				}
+				if (allPosts.length >= MAX_POST){
+					allPosts[allPosts.length - 1].remove();
+				}
+			}
+
+			function change(){
+				if (document.getElementById("rt").checked){
+					filter_rt = "checked";
+				}
+				else{
+					filter_rt = ""
+				}
+				filter_keys = document.getElementById("keyWords").value;
+				filter_followers = document.getElementById("min_fol").value;
+				finalStr = "/?keys="+filter_keys+"&fol="+filter_followers+"&rt="+filter_rt+"&hot="+isHot;
+				window.history.pushState("", "", finalStr);
+				if (filter_keys !== ""){
+					document.title=""+filter_keys;
+				}else{
+					document.title="CryptoRush"+filter_keys;
+				}
+				document.getElementById("mainContent").innerHTML = "";
+				for( var k in allContent){
+					if (filterOk(allContent[k])){
+						addPost(allContent[k]);
+					}
+				}
+			}
+        </script>
+    </body>
+</html>
+<!-- celui qui le ceci est un idiot -->
