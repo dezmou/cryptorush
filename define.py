@@ -50,10 +50,10 @@ C_ENDC 				= '\033[0m'
 C_BOLD 				= '\033[1m'
 C_UNDERLINE			= '\033[4m'
 
-ckey				="zsi623UHYEQqEOSCCPfrMX4is"
-csecret				="Y6KI0wPnUuvHmBUaf1nymTI2G7sq3koRXV9Bwuuto7A9CzH7SK"
-atoken				="902911147178897409-UuzuNZYG5IFoRfVCGW1nW4gy7SBgLLt"
-asecret				="b9mTW0XUqJ5PeLb3hXYF1rY7AAiljRAuJISzCmU4MC24P"
+ckey				=""
+csecret				=""
+atoken				=""
+asecret				=""
 
 def prj(s):
 	try:
